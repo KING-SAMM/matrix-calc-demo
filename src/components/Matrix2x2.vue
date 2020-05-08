@@ -83,7 +83,7 @@
             <div class="blank1"></div>    
             <button id="addBtn" class="minus w3-btn" v-on:click="matSubtract()" :class="isDoubleDisabled"><v-icon class="white--text" small>remove</v-icon></button>
             <button id="detBtn" class="fn w3-btn" v-on:click="getDeterminant()" :class="isDisabled">| <i>X</i> |</button>
-            <button id="detBtn" class="fn w3-btn" v-on:click="getRank()" :class="isDisabled"> <i>Rnk</i> </button>
+            <button id="detBtn" class="fn w3-btn" v-on:click="getRank()" :class="isDisabled"> <i>Rank</i> </button>
             <button id="detBtn" class="fn w3-btn" v-on:click="getEigenValues()" :class="isDisabled"> <i>λ</i> </button>
             <button id="trnBtn" class="fn w3-btn" v-on:click="getTranspose()" :class="isDisabled"><i>X</i><sup>T</sup></button>
             <button id="clrBtn" class="clear special w3-btn" v-on:click="clear()">CLR</button>
@@ -98,7 +98,7 @@
           
             <button id="addBtn" class="plus w3-btn" v-on:click="matAdd()" :class="isDoubleDisabled"><v-icon class="white--text" small>add</v-icon></button>
             <button id="invBtn" class="identity w3-btn" v-on:click="getIdentity()"><i>I</i></button>
-            <button id="clrBtn" class="swap w3-btn w3-blue" v-on:click="swapMatrices()" :class="isDoubleDisabled">{{ swap }}</button>
+            <button id="clrBtn" class="swap special w3-btn" v-on:click="swapMatrices()" :class="isDoubleDisabled">{{ swap }}</button>
             <button id="clrBtn" class="double special w3-btn modeBtn" v-on:click="doubleOperations()">{{ modeBtn }}</button>
             <div class="blank2"></div>
 
@@ -948,9 +948,9 @@ export default {
     }
 
     .mode {
-        padding-top: 20px;
+        margin-top: 50px;
         grid-area: mode;
-        margin-bottom: 5px;
+        margin-bottom: 0;
         align-items: center;
         color: #999;
         font-size: 18px;
@@ -1010,7 +1010,8 @@ export default {
         "blank1 matMultiply fn fn fn fn answer"
         "blank1 plus fn fn fn fn double";
         grid-area: buttons;
-        background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 188, 255)); 
+        background-image: -webkit-linear-gradient(120deg, indigo, rgb(0, 128, 255));
+        //-webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 188, 255)); 
         vertical-align: bottom;
         margin-left:-4px;
         margin-right:-4px;
@@ -1028,13 +1029,13 @@ export default {
 
     .clear {
         grid-area: clear;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;       //rgba(0, 128, 255, 0.6);
         color: white;
     }
 
     .answer {
         grid-area: answer;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;       //rgba(0, 128, 255, 0.6);
         color: white;
     }
 
@@ -1044,24 +1045,26 @@ export default {
 
     .plus {
         grid-area: plus;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;         //rgba(0, 128, 255, 0.6);
         color: white;
     }
 
     .minus {
         grid-area: minus;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;  //rgba(0, 128, 255, 0.6);
         color: white;
     }
 
     .matMultiply {
         grid-area: matMultiply;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;     //rgba(0, 128, 255, 0.6);
         color: white;
     }
 
     .swap {
         grid-column: 5 / 7;
+        background-color: inherit;
+        color: white;
     }
 
     .identity {
@@ -1195,11 +1198,11 @@ export default {
         margin-right: auto;
         margin-top: 15px !important;
         border-radius: 5px;
-        background-image: -webkit-linear-gradient(120deg, rgb(34, 116, 192), rgb(121, 121, 206));
-        background-image: -moz-linear-gradient(120deg, rgb(34, 116, 192), rgb(121, 121, 206));
-        background-image: -o-linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
-        background-image: -ms-linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
-        background-image: linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
+        background-image: -webkit-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
+        background-image: -moz-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
+        background-image: -o-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
+        background-image: -ms-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
+        background-image: linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
     }
 
     // iPhone 5/5E
@@ -1579,11 +1582,11 @@ export default {
             border-radius: 5px;
             margin-top: 15px !important;
             margin-bottom:5px;
-            background-image: -webkit-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -moz-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -o-linear-gradient(120deg, rgb(38, 140, 235),rgb(132, 117, 217));
-            background-image: -ms-linear-gradient(120deg, rgb(38, 140, 235),rgb(132, 117, 217));
-            background-image: linear-gradient(120deg, rgb(38, 140, 235),rgb(132, 117, 217));
+            background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -ms-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
         }
 
         #first_By2, #sec_By2 {

@@ -409,7 +409,7 @@ export default {
         "logmode logmode antilogmode antilogmode clear"
         "natlogmode natlogmode natantilogmode natantilogmode clear";
         grid-area: buttons;
-        background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 188, 255)); 
+        background-image: -webkit-linear-gradient(120deg, indigo, rgb(0, 128, 255)); 
         vertical-align: bottom;
         margin-left:-4px;
         margin-right:-4px;
@@ -426,7 +426,7 @@ export default {
 
     .clear {
         grid-area: clear;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
@@ -447,13 +447,13 @@ export default {
 
     .answer {
         grid-area: answer;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
     .matMultiply {
         grid-area: matMultiply;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
@@ -544,11 +544,11 @@ export default {
         margin-top: 0 !important;
         margin-bottom: 10px;
         border-radius: 5px;
-        background-image: -webkit-linear-gradient(120deg, rgb(34, 116, 192), rgb(121, 121, 206));
-        background-image: -moz-linear-gradient(120deg, rgb(34, 116, 192), rgb(121, 121, 206));
-        background-image: -o-linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
-        background-image: -ms-linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
-        background-image: linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
+        background-image: -webkit-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
+        background-image: -moz-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
+        background-image: -o-linear-gradient(120deg,indigo,  rgb(34, 116, 192),indigo);
+        background-image: -ms-linear-gradient(120deg,indigo,  rgb(34, 116, 192),indigo);
+        background-image: linear-gradient(120deg,indigo,  rgb(34, 116, 192),indigo);
     }
 
     // iPhone 5/5E
@@ -996,11 +996,11 @@ export default {
             border-radius: 5px;
             margin-bottom: 0px;
             margin-top: 6px !important;
-            background-image: -webkit-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -moz-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -o-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -ms-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
+            background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -ms-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
         }
 
         .buttons {

@@ -14,6 +14,7 @@
             <router-link to="/matrix2x2" class="links"><v-icon small>widgets</v-icon><br><span class="white--text iconText">2X2</span></router-link>
             <router-link to="/matrix3x3" class="links"><v-icon small>apps</v-icon><br><span class="white--text iconText">3X3</span></router-link>
             <v-spacer></v-spacer>
+            
             <v-icon>more_vert</v-icon>
         <!-- </v-container>-->
         </v-toolbar>

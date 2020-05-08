@@ -73,15 +73,15 @@
 
         <section class="buttons w3-animate-bottom w3-small">
             <div class="blank1"></div>
-            <button id="subBtn" class="minus w3-btn" v-on:click="getSubtraction()" :class="isDoubleDisabled">-</button>
-            <button id="invBtn" class="fn w3-btn" v-on:click="getAbsA()" :class="isDoubleDisabled">|<i>A</i>|</button>
-            <button id="invBtn" class="fn w3-btn" v-on:click="getAbsB()" :class="isDoubleDisabled">|<i>B</i>|</button>
+            <button id="subBtn" class="minus w3-btn" v-on:click="getSubtraction()" :class="isDoubleDisabled"><v-icon class="white--text" small>remove</v-icon></button>
+            <button id="invBtn" class="fn w3-btn" v-on:click="getAbsA()" :class="isDoubleDisabled">| <i>A</i> |</button>
+            <button id="invBtn" class="fn w3-btn" v-on:click="getAbsB()" :class="isDoubleDisabled">| <i>B</i> |</button>
             <button id="invBtn" class="fn w3-btn" v-on:click="getAHat()" :class="isDoubleDisabled"><b>â</b></button>
             <button id="invBtn" class="fn w3-btn" v-on:click="getBHat()" :class="isDoubleDisabled"><b>û</b></button>
             <button class="clear special w3-btn" v-on:click="clear()">CLR</button>
             <section class="blank2"></section>
 
-            <button id="addBtn" class="plus w3-btn" v-on:click="getSum()" :class="isDoubleDisabled">+</button> 
+            <button id="addBtn" class="plus w3-btn" v-on:click="getSum()" :class="isDoubleDisabled"><v-icon class="white--text" small>add</v-icon></button> 
             <button id="invBtn" class="angle fn w3-btn" v-on:click="getAngle()" :class="isDoubleDisabled">θ</button> 
             <button id="scalarMultiplyBtn" class="fn w3-btn" v-on:click="scalarMultiply()" :class="isDisabled"><strong>k</strong><i>X</i></button>
             <button id="matSquaredBtn" class="fn w3-btn" v-on:click="matSquared()" :class="isDisabled"><i>X</i><sup>2</sup></button>
@@ -89,7 +89,7 @@
             
             <button id="dotProdBtn" class="dot w3-btn" v-on:click="dotProduct()" :class="isDoubleDisabled">{{ dotProdBtnSwap }}</button>
             <button id="crossProdBtn" class="cross w3-btn" v-on:click="crossProduct()" :class="isDoubleDisabled">{{ crossProdBtnSwap }}</button>
-            <button id="crossProdBtn" class="absCross w3-btn" v-on:click="absCrossProduct()" :class="isDoubleDisabled">|{{ crossProdBtnSwap }}|</button>
+            <button id="crossProdBtn" class="absCross w3-btn" v-on:click="absCrossProduct()" :class="isDoubleDisabled">| {{ crossProdBtnSwap }} |</button>
             <button id="clrBtn" class="swap w3-btn" v-on:click="swapMatrices()" :class="isDoubleDisabled">{{ swap }}</button>    
             <button id="clrBtn" class="double special w3-btn w3-red" v-on:click="doubleOperations()">{{ modeBtn }}</button>
             <section class="blank2"></section>
@@ -151,8 +151,8 @@ export default {
             isDoubleDisabled: true,
             modeBtn: "SINGLE",
             swap: "A<─>B",
-            crossProdBtnSwap: "AxB",
-            dotProdBtnSwap: "A.B",
+            crossProdBtnSwap: "A x B",
+            dotProdBtnSwap: "A . B",
             type: "number"
         }
     },
@@ -716,12 +716,13 @@ export default {
     }
 
     .mode {
-        padding-top: 20px;
+        margin-top: 50px;
         grid-area: mode;
-        margin-bottom: 5px;
+        margin-bottom: 0;
         align-items: center;
         color: #999;
         font-size: 18px;
+        
     }
 
     .answerTable {
@@ -788,20 +789,21 @@ export default {
         "blank1 plus fn fn fn fn answer"
         "blank1 dot cross absCross swap swap double";
         grid-area: buttons;
-         background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 188, 255)); 
+         background-image: -webkit-linear-gradient(120deg, indigo, rgb(0, 128, 255));
+         //-webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 188, 255)); 
         vertical-align: bottom;
         height: 20vh;
     }
 
     .clear {
         grid-area: clear;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
     .answer {
         grid-area: answer;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
@@ -813,31 +815,31 @@ export default {
 
     .plus {
         grid-area: plus;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
     .minus {
         grid-area: minus;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
     .dot {
         grid-area: dot;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
     .cross {
         grid-area: cross;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
     .swap {
         grid-area: swap;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
@@ -847,7 +849,7 @@ export default {
 
     .absCross {
         grid-area: absCross;
-        background-color: rgba(0, 128, 255, 0.6);
+        background-color: indigo;
         color: white;
     }
 
@@ -969,11 +971,11 @@ export default {
             margin-top: 15px !important;
             margin-bottom:5px;
             border-radius: 5px;
-            background-image: -webkit-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -moz-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -o-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -ms-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
+            background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -ms-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
         }
 
         .matrix {

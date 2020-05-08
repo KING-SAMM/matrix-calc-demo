@@ -257,11 +257,11 @@ export default {
         margin-top: 0 !important;
         margin-bottom: 10px;
         border-radius: 5px;
-        background-image: -webkit-linear-gradient(120deg, rgb(34, 116, 192), rgb(121, 121, 206));
-        background-image: -moz-linear-gradient(120deg, rgb(34, 116, 192), rgb(121, 121, 206));
-        background-image: -o-linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
-        background-image: -ms-linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
-        background-image: linear-gradient(120deg, rgb(34, 116, 192),rgb(121, 121, 206));
+        background-image: -webkit-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
+        background-image: -moz-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
+        background-image: -o-linear-gradient(120deg,indigo,  rgb(34, 116, 192),indigo);
+        background-image: -ms-linear-gradient(120deg,indigo,  rgb(34, 116, 192),indigo);
+        background-image: linear-gradient(120deg,indigo,  rgb(34, 116, 192),indigo);
     }
 
     // iPhone 5/5E
@@ -693,11 +693,11 @@ export default {
             border-radius: 5px;
             margin-bottom: 30px;
             margin-top: 6px !important;
-            background-image: -webkit-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -moz-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -o-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: -ms-linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
-            background-image: linear-gradient(120deg, rgb(38, 140, 235), rgb(132, 117, 217));
+            background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: -ms-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+            background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
         }
 
     }
