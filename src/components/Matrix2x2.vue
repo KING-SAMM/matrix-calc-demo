@@ -1197,6 +1197,7 @@ export default {
         margin-left: auto;
         margin-right: auto;
         margin-top: 15px !important;
+        padding-top:12px;
         border-radius: 5px;
         background-image: -webkit-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
         background-image: -moz-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
@@ -1582,6 +1583,7 @@ export default {
             border-radius: 5px;
             margin-top: 15px !important;
             margin-bottom:5px;
+            padding-top:12px;
             background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
             background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
             background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);

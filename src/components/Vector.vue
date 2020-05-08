@@ -579,8 +579,8 @@ export default {
                 return
             } else if (this.showSingleInputMatrix === false && this.swap === "A<─>B") {
                 this.swap = "B<─>A"
-                this.dotProdBtnSwap = "B.A"
-                this.crossProdBtnSwap = "BxA"
+                this.dotProdBtnSwap = "B . A"
+                this.crossProdBtnSwap = "B x A"
 
                 this.a = this.Ax
                 this.b = this.Ay
@@ -606,8 +606,8 @@ export default {
                 return
             } else if (this.showSingleInputMatrix === false && this.swap === "B<─>A") {
                 this.swap = "A<─>B"
-                this.dotProdBtnSwap = "A.B"
-                this.crossProdBtnSwap = "AxB"
+                this.dotProdBtnSwap = "A . B"
+                this.crossProdBtnSwap = "A x B"
 
                 this.a = this.Ax
                 this.b = this.Ay
@@ -970,6 +970,7 @@ export default {
             margin-right: 35%;
             margin-top: 15px !important;
             margin-bottom:5px;
+            padding-top:12px;
             border-radius: 5px;
             background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
             background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
