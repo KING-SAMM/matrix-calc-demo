@@ -4,14 +4,12 @@
             <!-- Mode -->
             <span class="mode">{{ mode }}</span>
 
-            <div v-show="alert" class="alert"> 
+            <div v-show="alert" class="answerTable alert"> 
                 <b-alert 
                     show 
                     variant="info" 
                     fade
                     dismissible
-                    @dismissed="dismissCountDown=0"
-                    @dismiss-count-down="countDownChanged"
                 >
                 
                     <h3 class="alert-heading">{{ alertHeadline }}</h3>
@@ -19,7 +17,7 @@
                 </b-alert>
             </div>
 
-            <table id="threeBy3B" class="w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showAnsMatrix">
+            <table id="threeBy3B" class="answerTable w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showAnsMatrix">
                 <tbody>
                     <tr>
                         <td><p id="Cx">{{Cx}} {{ i }}</p></td><td><p id="Cy">{{Cy}} {{ j }}</p></td><td><p id="Cz">{{Cz}} {{ k }}</p></td>
@@ -822,14 +820,17 @@ export default {
         
     }
 
-    .alert {
-        z-index: 1;
-    }
-
     .answerTable {
         grid-area: answerTable;
         margin-bottom: 30px;
         align-items: center;
+        justify-content: center;
+    }
+
+     .alert {
+        width: 66.6%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .method {

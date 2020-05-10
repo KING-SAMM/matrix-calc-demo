@@ -4,14 +4,12 @@
         <!-- Mode -->
             <span class="mode">{{ mode }}</span>
 
-            <div> 
+            <div class="alert"> 
                 <b-alert 
                     v-model="alert" 
                     variant="info" 
                     fade
                     dismissible
-                    @dismissed="dismissCountDown=0"
-                    @dismiss-count-down="countDownChanged"
                 >
                 
                     <h3 class="alert-heading">{{ alertHeadline }}</h3>
@@ -1445,6 +1443,13 @@ export default {
         grid-area: answerTable;
         margin-bottom: 30px;
         align-items: center;
+        justify-content: center;
+    }
+
+     .alert {
+        width: 66.6%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     

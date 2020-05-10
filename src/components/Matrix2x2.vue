@@ -4,14 +4,13 @@
             <!-- Mode -->
             <span class="mode">{{ mode }}</span>
 
-            <div> 
+            <div class="answerTable alert"> 
                 <b-alert 
                     v-model="alert" 
                     variant="info" 
                     fade
                     dismissible
                 >
-                
                     <h3 class="alert-heading">{{ alertHeadline }}</h3>
                     <div>{{ alertContent }}</div>
                 </b-alert>
@@ -712,7 +711,7 @@ export default {
                 this.showDeterminant = false
                 this.method = ""
 
-                this.alert = false
+                this.alert = true
                 this.alertHeadline = "No Empty Elements"
                 this.alertContent = "Every entry is required"
             } else {
@@ -1062,6 +1061,7 @@ export default {
         "answerTable";
     }
 
+   
     .mode {
         margin-top: 50px;
         grid-area: mode;
@@ -1075,6 +1075,13 @@ export default {
         grid-area: answerTable;
         margin-bottom: 30px;
         align-items: center;
+        justify-content: center;
+    }
+
+     .alert {
+        width: 66.6%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .method {
@@ -1532,6 +1539,10 @@ export default {
         .matrix > #twoBy2 {
             width: 180px;
         }
+
+        .alert {
+            width: 90%;
+        }
     }
 
     // Samsung Galaxy S5
@@ -1553,6 +1564,10 @@ export default {
         .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
             margin-left: -5%;
             margin-right: -5%;
+        }
+
+        .alert {
+            width: 90%;
         }
 
         .buttons {
