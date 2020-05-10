@@ -4,6 +4,21 @@
         <!-- Mode -->
             <span class="mode">{{ mode }}</span>
 
+            <div> 
+                <b-alert 
+                    v-model="alert" 
+                    variant="info" 
+                    fade
+                    dismissible
+                    @dismissed="dismissCountDown=0"
+                    @dismiss-count-down="countDownChanged"
+                >
+                
+                    <h3 class="alert-heading">{{ alertHeadline }}</h3>
+                    <div>{{ alertContent }}</div>
+                </b-alert>
+            </div>
+
             <table id="threeBy3Ans" class="answerTable w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showAnsMatrix">
                 <tbody>
                     <tr>
@@ -189,7 +204,10 @@ export default {
             isDisabled: true,
             isDoubleDisabled: "w3-disabled",
             modeBtn: "DOUBLE",
-            swap: "A <=> B"
+            swap: "A <=> B",
+            alert: false,
+            alertHeadline: "",
+            alertContent: ""
 
         }
     },
@@ -205,15 +223,22 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
             } else if (   // If input is invalid, show alert
                 this.a === undefined || this.b === undefined || this.c === undefined || this.d === undefined || this.e === undefined
                 || this.f === undefined || this.g === undefined || this.h === undefined || this.i === undefined
             ) {
-                alert("Only numeric inputs are allowed")
+
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
+
+                this.alert = true
+                this.alertHeadline = "Numeric Inputs Please!"
+                this.alertContent = "Only numeric inputs are allowed"
             } else {
                 // Else compute determinant
                 let detArr = [[eval(this.a), eval(this.b), eval(this.c)], [eval(this.d), eval(this.e), eval(this.f)], [eval(this.g), eval(this.h), eval(this.i)]]
@@ -222,6 +247,9 @@ export default {
                 this.det = find_rational(this.det).join(" / ")
 
                 // Display only relevant value(s)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
                 this.scalar = ""
                 this.method = ""
                 this.rank = ""
@@ -260,16 +288,26 @@ export default {
             ) {
                 this.showAnsMatrix = false
                 this.showRank = false
-                alert("Every entry is required")
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
             } else if (   // If input is invalid, show alert
                 this.a === undefined || this.b === undefined || this.c === undefined || this.d === undefined || this.e === undefined
                 || this.f === undefined || this.g === undefined || this.h === undefined || this.i === undefined
             ) {
-                alert("Only numeric inputs are allowed")
+                this.alert = true
+                this.alertHeadline = "Numeric Inputs Please!"
+                this.alertContent = "Only numeric inputs are allowed"
+               
                 this.showAnsMatrix = false
                 this.showRank = false
             } else {
-                // Else compute determinant
+                // Else compute determinant (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 this.det = this.A * ((this.E * this.I) - (this.H * this.F)) - this.B * ((this.D * this.I) - (this.G * this.F)) + this.C * ((this.D * this.H) - (this.G * this.E))
                 this.det = find_rational(this.det).join(" / ")
 
@@ -322,10 +360,18 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
             } else if ((this.showScalarInputMatrix === false) || (this.showScalarInputMatrix === true && (this.scalar === "" || this.scalar === undefined || this.scalar === isNaN))) { 
                 // If scalar field is inactive or scalar is not set...
-                // ... do regular transpose
+                // ... do regular transpose (after clearing alert)
+
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""         
+
                 let rows = 3
                 let cols = 3
             
@@ -351,7 +397,11 @@ export default {
                 this.showDeterminant = true
                 this.showAnsMatrix = true
             } else if (this.showScalarInputMatrix === true && (this.scalar !== "" || this.scalar !== undefined)) { // If scalar is set...
-                // ... do scalar multiplication of transpose
+                // ... do scalar multiplication of transpose (after clearing alert)
+
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
 
                 // Convert scalar numeric string to number and transpose
                 let A1 = this.A * eval(this.scalar)
@@ -392,16 +442,26 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
             } else if (    // If input is invalid, show alert
                 this.a === undefined || this.b === undefined || this.c === undefined || this.d === undefined || this.e === undefined
                 || this.f === undefined || this.g === undefined || this.h === undefined || this.i === undefined
             ) {
-                alert("Only numeric inputs are allowed")
+                this.alert = true
+                this.alertHeadline = "Numeric Inputs Please!"
+                this.alertContent = "Only numeric inputs are allowed"
+               
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-            } else {   // Else comput adjoint
+            } else {   // Else comput adjoint (after clearing alert)
+
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = "" 
 
                 // Comvert numeric string to number and assign into holding variables
                 this.A = eval(this.a)
@@ -450,16 +510,26 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
             } else if (
                 this.a === undefined || this.b === undefined || this.c === undefined || this.d === undefined || this.e === undefined
                 || this.f === undefined || this.g === undefined || this.h === undefined || this.i === undefined
             ) {
-                alert("Only numeric inputs are allowed")
+                this.alert = true
+                this.alertHeadline = "Numeric Inputs Please!"
+                this.alertContent = "Only numeric inputs are allowed"
+                
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
             } else {
+                //Clear alert
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
                 
                 // Comvert numeric string to number and assign into holding variables
                 this.A = eval(this.a)
@@ -494,7 +564,10 @@ export default {
                 let num = (1/this.det)
                 
                 if (this.det === 0) {
-                    alert("Matrix is NON-INVERTIBLE when Det = 0")
+                    this.showAnsMatrix = false
+                    this.alert = true
+                    this.alertHeadline = "Non-Invertible Matrix"
+                    this.alertContent = "A square Matrix is NON-INVERTIBLE when determinant = 0"
                 } else {
                     
                     let i = 0
@@ -557,9 +630,16 @@ export default {
                 // ...show alert and do nothing
                 this.showEigenvalues = false
                 this.method = ""
-                alert("Every entry is required")
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
             } else if (this.showScalarInputMatrix === false) { // If scalar field is inactive...
-                // ... do regular eigenvalues
+                // ... do regular eigenvalues (after clearing alert)
+
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
 
                 this.lambda1_2 = eigenvalues3x3(Arr).join(", ")
 
@@ -568,7 +648,11 @@ export default {
                 this.method = ""
             
             } else if (this.showScalarInputMatrix === true && (this.scalar === "" || this.scalar === undefined || this.scalar === isNaN)) { // If scalar is not set...
-                // ... do regular eigenvalues
+                // ... do regular eigenvalues (after clearing alert)
+
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
 
                 this.lambda1_2 = eigenvalues3x3(Arr).join(", ")
 
@@ -578,6 +662,12 @@ export default {
 
             } else if (this.showScalarInputMatrix === true && (this.scalar !== "" || this.scalar !== undefined)) { // If scalar is set...
                 // ... do scalar multiplication of and find eigenvalues of scalar product
+                // After clearing any previous alert
+
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+                
                 this.a11 = this.A * eval(this.scalar)
                 this.b12 = this.B * eval(this.scalar)
                 this.c13 = this.C * eval(this.scalar)
@@ -629,10 +719,16 @@ export default {
                 || this.f === "" || this.g === "" || this.h === "" || this.i === "") {  
 
                 //...else if any entry is missing or invalid, show akert and do nothing
-                alert("Every entry is required")
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
                 return
             } else if ((this.showScalarInputMatrix === true && this.scalar !== undefined && this.scalar !== isNaN) || this.scalar === 0) {
                 //...else if scalar is provided and valid, proceed with scalar multiplication
+                //after clearing any previous alert
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
 
                 this.A = eval(this.a)
                 this.B = eval(this.b) 
@@ -703,7 +799,7 @@ export default {
                 return
             }
 
-            // If scalalr is missing, update eigenvalues accordingly
+            // If scalar is missing, update eigenvalues accordingly
             if (this.showScalarInputMatrix === true && this.scalar === "") {
 
                 this.lambda1_2 = eigenvalues3x3(arr).join(", ")
@@ -779,8 +875,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
             } else {
+
+                this.alert = false                                                                                
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let rows = 3
                 let cols = 3
 
@@ -839,6 +943,9 @@ export default {
             this.scalar = ""
             this.lambda1_2 = ""
             this.lambdaScalarProd1_2 = ""
+            this.alert = false
+            this.alertHeadline = ""
+            this.alertContent = ""
             if (this.showSingleInputMatrix === true && this.showDoubleInputMatrix === false) {
                 this.a = "" 
                 this.b = "" 
@@ -875,6 +982,9 @@ export default {
             this.showScalarInputMatrix = false
             this.showSingleInputMatrix = !this.showSingleInputMatrix
             this.showDoubleInputMatrix = !this.showDoubleInputMatrix
+            this.alert = false
+            this.alertHeadline = ""
+            this.alertContent = ""
             
             // Enable buttons and view for binary operations when on double matrices mode
             if (this.showDoubleInputMatrix === true) {
@@ -912,13 +1022,21 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {    // Else compute sum
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {    // Else compute sum (after clearing alert)
+
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let rows = 3
                 let cols = 3
                 let arr1 = [[this.M1_a, this.M1_b, this.M1_c], [this.M1_d, this.M1_e, this.M1_f], [this.M1_g, this.M1_h, this.M1_i]]
                 let arr2 = [[this.M2_a, this.M2_b, this.M2_c], [this.M2_d, this.M2_e, this.M2_f], [this.M2_g, this.M2_h, this.M2_i]]
-            
+
                 for (let i = 0; i < rows; ++i) {
                     for (let j = 0; j < cols; ++j) {
                         arr2[i][j] = arr1[i][j] + arr2[i][j]           
@@ -953,8 +1071,15 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else compute difference
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else compute difference (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""             
+
                 let rows = 3
                 let cols = 3
                 let arr1 = [[this.M1_a, this.M1_b, this.M1_c], [this.M1_d, this.M1_e, this.M1_f], [this.M1_g, this.M1_h, this.M1_i]]
@@ -994,8 +1119,15 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let rows = 3
                 let cols = 3
                 let arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -1139,6 +1271,10 @@ export default {
                 this.a = this.b = this.c = this.d = this.e = this.f = this.g = this.h = this.i = ""
                 this.a11 = this.b12 = this.c13 = this.d21 = this.e22 = this.f23 = this.g31 = this.h32 = this.i33 = ""
 
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+                
                 this.opr = ""
                 this.method = ""
                 this.matrixA = "B"
@@ -1181,7 +1317,9 @@ export default {
                 this.a = this.b = this.c = this.d = this.e = this.f = this.g = this.h = this.i = ""
                 this.a11 = this.b12 = this.c13 = this.d21 = this.e22 = this.f23 = this.g31 = this.h32 = this.i33 = ""
 
-                
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
                 this.opr = ""
                 this.method = ""
                 this.matrixA = "A"

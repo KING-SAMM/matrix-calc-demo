@@ -5,17 +5,16 @@
             <span class="mode">{{ mode }}</span>
 
             <div> 
-                <v-alert
-                :value="alert"
-                elevation="4"
-                close-text="Close Alert"
-                outlined
-                color="info"
-                dismissible
+                <b-alert 
+                    v-model="alert" 
+                    variant="info" 
+                    fade
+                    dismissible
                 >
-                    <h3 class="headline">{{ alertHeadline }}</h3>
+                
+                    <h3 class="alert-heading">{{ alertHeadline }}</h3>
                     <div>{{ alertContent }}</div>
-                </v-alert>
+                </b-alert>
             </div>
             
             <table id="twoBy2B" class="answerTable w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showAnsMatrix">
@@ -426,7 +425,7 @@ export default {
                 this.showAnsMatrix = false
                 this.alert = true
                 this.alertHeadline = "Non-Invertible Matrix"
-                this.alertContent = "Matrix is NON-INVERTIBLE when determinant = 0"
+                this.alertContent = "A square Matrix is NON-INVERTIBLE when determinant = 0"
             } else {
                 
                 newMat = scalarMultiplyArray(mat2By2, rows)

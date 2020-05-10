@@ -4,6 +4,21 @@
             <!-- Mode -->
             <span class="mode">{{ mode }}</span>
 
+            <div v-show="alert" class="alert"> 
+                <b-alert 
+                    show 
+                    variant="info" 
+                    fade
+                    dismissible
+                    @dismissed="dismissCountDown=0"
+                    @dismiss-count-down="countDownChanged"
+                >
+                
+                    <h3 class="alert-heading">{{ alertHeadline }}</h3>
+                    <div>{{ alertContent }}</div>
+                </b-alert>
+            </div>
+
             <table id="threeBy3B" class="w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showAnsMatrix">
                 <tbody>
                     <tr>
@@ -153,7 +168,10 @@ export default {
             swap: "A<─>B",
             crossProdBtnSwap: "A x B",
             dotProdBtnSwap: "A . B",
-            type: "number"
+            type: "number",
+            alert: false,
+            alertHeadline: "",
+            alertContent: ""
         }
     },
 
@@ -200,8 +218,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let arr1 = [this.Ax, this.Ay, this.Az]
                 let absoluteOfA = Math.sqrt(square(this.Ax) + square(this.Ay) + square(this.Az))
                 this.C = "|A| = " + absoluteOfA
@@ -222,8 +248,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let arr1 = [this.Bx, this.By, this.Bz]
                 let absoluteOfB = Math.sqrt(square(this.Bx) + square(this.By) + square(this.Bz))
                 this.C = "|B| = " + absoluteOfB
@@ -246,8 +280,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let arr1 = [eval(this.Ax), eval(this.Ay), eval(this.Az)]
                 let absoluteOfA_square = square(eval(this.Ax)) + square(eval(this.Ay)) + square(eval(this.Az))
                 let surd = simplify_surd(absoluteOfA_square)
@@ -284,8 +326,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let arr1 = [eval(this.Bx), eval(this.By), eval(this.Bz)]
                 let absoluteOfB_square = square(eval(this.Bx)) + square(eval(this.By)) + square(eval(this.Bz))
                 let surd = simplify_surd(absoluteOfB_square)
@@ -324,8 +374,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let rows = 3
                 let cols = 3
                 //let arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -357,15 +415,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = "" 
         
-                // let rows = 3
-                // let cols = 3
-                // //let arr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-                // let arr1 = [this.Ax, this.Ay, this.Az]
-                // let arr2 = [this.Bx, this.By, this.Bz]
-            
     
                 this.Cx = (this.Ay * this.Bz) - (this.Az * this.By) 
                 this.Cy = (this.Az * this.Bx) - (this.Ax * this.Bz)   
@@ -401,8 +460,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 this.showAnsMatrix = false
                 let rows = 1
                 let cols = 3
@@ -435,8 +502,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {   // Else perform matrix multiplication
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {   // Else perform matrix multiplication (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 this.showAnsMatrix = false
                 let rows = 1
                 let cols = 3
@@ -498,6 +573,12 @@ export default {
             this.scalar = ""
             this.lambda1_2 = ""
             this.lambdaScalarProd1_2 = ""
+            this.alert = false
+            this.alertHeadline = ""
+            this.alertContent = ""
+            this.alert = false
+            this.alertHeadline = ""
+            this.alertContent = ""
             if (this.showSingleInputMatrix === true && this.showDoubleInputMatrix === false) {
                 this.a = "" 
                 this.b = "" 
@@ -521,8 +602,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {    // Else compute sum
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {    // Else compute sum (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+
                 let rows = 1
                 let cols = 3
                 let arr1 = [eval(this.Ax), eval(this.Ay), eval(this.Az)]
@@ -553,8 +642,16 @@ export default {
                 this.showAnsMatrix = false
                 this.showDeterminant = false
                 this.method = ""
-                alert("Every entry is required")
-            } else {    // Else compute sum
+                this.C = ""
+
+                this.alert = true
+                this.alertHeadline = "No Empty Elements"
+                this.alertContent = "Every entry is required"
+            } else {    // Else compute sum (after clearing alert)
+                this.alert = false
+                this.alertHeadline = ""
+                this.alertContent = ""
+                
                 let rows = 1
                 let cols = 3
                 let arr1 = [eval(this.Ax), eval(this.Ay), eval(this.Az)]
@@ -723,6 +820,10 @@ export default {
         color: #999;
         font-size: 18px;
         
+    }
+
+    .alert {
+        z-index: 1;
     }
 
     .answerTable {
@@ -948,7 +1049,7 @@ export default {
         }
 
         #threeBy3 {
-             width: 40%;
+            width: 40%;
             float: center;
             margin-left: 30%;
             margin-right: 30%;
@@ -969,7 +1070,6 @@ export default {
             margin-left: 35%;
             margin-right: 35%;
             margin-top: 15px !important;
-            margin-bottom:5px;
             padding-top:12px;
             border-radius: 5px;
             background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
