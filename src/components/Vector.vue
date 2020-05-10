@@ -25,7 +25,7 @@
                 </tbody>
             </table>
 
-            <p id="C" class="w3-center">{{ C }}</p>
+            <p id="C" class="answerTable w3-center">{{ C }}</p>
         </section>
 
         <section class="method"><span id="method">{{ method }}</span></section>
