@@ -4,7 +4,7 @@
         <!-- Mode -->
             <span class="mode">{{ mode }}</span>
 
-            <div class="alert"> 
+            <div class="answerTable alert"> 
                 <b-alert 
                     v-model="alert" 
                     variant="info" 

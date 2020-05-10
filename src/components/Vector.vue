@@ -4,9 +4,9 @@
             <!-- Mode -->
             <span class="mode">{{ mode }}</span>
 
-            <div v-show="alert" class="answerTable alert"> 
+            <div class="answerTable alert"> 
                 <b-alert 
-                    show 
+                    v-model="alert" 
                     variant="info" 
                     fade
                     dismissible
