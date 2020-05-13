@@ -1,6 +1,6 @@
 <template>
     <v-content>
-      <Nav /> 
+      <Sidebar /> 
       <Vector />
     </v-content>
 
@@ -9,13 +9,13 @@
 <script>
 // @ is an alias to /src
 import Vector from '@/components/Vector.vue'
-import Nav from '@/components/Nav.vue'
+import Sidebar from '@/components/Sidebar.vue'
 
 export default {
   name: 'vector',
   components: {
     Vector,
-    Nav
+    Sidebar
   }
 }
 </script>

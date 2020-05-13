@@ -121,6 +121,7 @@
             <section class="blank2"></section>
     
         </section>
+        <section class="bottomSpace"></section>
     </v-container>
 </template>
 
@@ -1406,6 +1407,7 @@ export default {
         "scalar scalar scalar"
         "matrix matrix matrix"
         "buttons buttons buttons";
+        box-sizing: border-box;
     }
 
     .answerPanel {
@@ -1423,7 +1425,7 @@ export default {
 
         
         display: grid;
-        grid-template-columns:1000px;
+        grid-template-columns:1fr;
         grid-template-rows: 30px 200px;
         grid-template-areas:
         "mode"
@@ -1431,7 +1433,7 @@ export default {
     }
 
     .mode {
-        margin-top: 50px;
+        margin-top: 30px;
         grid-area: mode;
         margin-bottom: 0;
         align-items: center;
@@ -1441,6 +1443,7 @@ export default {
 
     .answerTable {
         grid-area: answerTable;
+        margin-top: 5px;
         margin-bottom: 30px;
         align-items: center;
         justify-content: center;
@@ -1695,7 +1698,8 @@ export default {
         background-image: linear-gradient(120deg,indigo,  rgb(67, 152, 230),indigo);
     }
 
-    @media screen and (min-width: 736px)
+    //Media Query for large Screens: Tablet Landscape, Laptop displays, Desktop displays
+    @media screen and (min-width: 992px)
     {
         input {
             width: 80%;
@@ -1703,7 +1707,9 @@ export default {
         }
 
         .grid {
-            grid-template-rows: 175px 18px 70px 24px 120px 70px;
+            grid-template-rows: 230px 18px 70px 24px 120px 70px;
+            max-height: 100vh;
+            box-sizing: border-box;
         }
 
         #threeBy3 {

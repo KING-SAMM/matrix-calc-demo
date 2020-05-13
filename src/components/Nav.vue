@@ -19,14 +19,14 @@
         <!-- </v-container>-->
         </v-toolbar>
 
-        <v-navigation-drawer v-model="drawer" app class="indigo">
+        <!-- <v-navigation-drawer v-model="drawer" app class="indigo">
             <br>
             <br>
             <router-link to="/logarithm"><p class="white--text"><v-icon color="white" style="float:left">call_made</v-icon>Logarithms</p></router-link>
             <router-link to="/matrix2x2"><p class="white--text"><v-icon color="white" style="float:left">apps</v-icon>Matrices</p></router-link>
             <router-link to="/numbersystems"><p class="white--text"><v-icon color="white" style="float:left">timer_3</v-icon>Number Systems</p></router-link>
             <router-link to="/vector"><p class="white--text"><v-icon color="white" style="float:left">swap_horiz</v-icon>Vectors</p></router-link>
-        </v-navigation-drawer>
+        </v-navigation-drawer> -->
     </nav>
 </template>
 
@@ -71,6 +71,19 @@ span.iconText {
 p.white--text {
     margin: 10px;
 }
+
+nav {
+    width: 100vw;
+    margin: 0;
+}
+// // iPhone X
+//      @media screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)
+//     {
+//         nav {
+//             width: 100vw;
+//             margin: 0;
+//         }
+//     }
 
 
 </style>

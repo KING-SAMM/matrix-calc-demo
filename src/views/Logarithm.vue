@@ -1,7 +1,7 @@
 <template>
 
     <v-content>
-      <Nav /> 
+      <Sidebar /> 
       <Logarithm />
     </v-content>
 
@@ -10,13 +10,13 @@
 <script>
 // @ is an alias to /src
 import Logarithm from '@/components/Logarithm.vue'
-import Nav from '@/components/Nav.vue'
+import Sidebar from '@/components/Sidebar.vue'
 
 export default {
   name: 'logarithm',
   components: {
     Logarithm,
-    Nav
+    Sidebar
   }
 }
 </script>

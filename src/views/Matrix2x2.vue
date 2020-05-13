@@ -1,7 +1,7 @@
 <template>
 
     <v-content>
-      <Nav /> 
+      <Sidebar /> 
       <Matrix2x2 />
     </v-content>
 
@@ -10,13 +10,13 @@
 <script>
 // @ is an alias to /src
 import Matrix2x2 from '@/components/Matrix2x2.vue'
-import Nav from '@/components/Nav.vue'
+import Sidebar from '@/components/Sidebar.vue'
 
 export default {
   name: 'matrix2x2',
   components: {
     Matrix2x2,
-    Nav
+    Sidebar
   }
 }
 </script>

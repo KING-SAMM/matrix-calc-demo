@@ -1,4 +1,4 @@
-<template>
+<template>  
     <v-container class="grid"> 
         <section class="answerPanel">
             <!-- Mode -->
@@ -12,7 +12,7 @@
                     dismissible
                 >
                     <h3 class="alert-heading">{{ alertHeadline }}</h3>
-                    <div>{{ alertContent }}</div>
+                    <div class="alert-content">{{ alertContent }}</div>
                 </b-alert>
             </div>
             
@@ -1027,9 +1027,11 @@ export default {
     // Main grid
     .grid {
         display: grid;
+        //padding: 0 10px;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 175px 18px 70px 24px 120px 70px;
+        grid-template-rows: 175px 18px 70px 24px 120px 70px 25px;
         max-height: 100vh;
+        max-width: 100vw;
         grid-template-areas: 
         "answerPanel answerPanel answerPanel"
         "method method method"
@@ -1041,11 +1043,10 @@ export default {
         box-sizing: border-box; 
     }
 
+
     .answerPanel {
         grid-area: answerPanel;
-        margin-left:-4px;
-        margin-right:-4px;
-        margin-top: -75px;
+        margin-top: 0;
         align-items:center;
         justify-content: center;
         grid-row-start: 1;
@@ -1054,8 +1055,8 @@ export default {
         padding: 10px 15px 25px 15px;
 
         display: grid;
-        grid-template-columns:1000px;
-        grid-template-rows: 30px 200px;
+        grid-template-columns:1fr;
+        grid-template-rows: 30px 180px;
         grid-template-areas:
         "mode"
         "answerTable";
@@ -1063,7 +1064,7 @@ export default {
 
    
     .mode {
-        margin-top: 50px;
+        margin-top: 30px;
         grid-area: mode;
         margin-bottom: 0;
         align-items: center;
@@ -1073,21 +1074,22 @@ export default {
 
     .answerTable {
         grid-area: answerTable;
+        margin-top: 5px;
         margin-bottom: 30px;
         align-items: center;
         justify-content: center;
     }
 
      .alert {
-        width: 66.6%;
+        width: 80vw;
         margin-left: auto;
         margin-right: auto;
     }
 
     .method {
         grid-area: method;
-        margin-left:-4px;
-        margin-right:-4px;
+        // margin-left:-4px;
+        // margin-right:-4px;
         font-size: 12px;
         color: white;
         background-color: indigo;
@@ -1107,16 +1109,16 @@ export default {
 
     .scalar {
         grid-area: scalar;
-        margin-left:-4px;
-        margin-right:-4px;
+        // margin-left:-4px;
+        // margin-right:-4px;
         font-size: 10px;
         background-color: indigo;
     }
 
     .matrix {
         grid-area: matrix;
-        margin-left:-4px;
-        margin-right:-4px;
+        // margin-left:-4px;
+        // margin-right:-4px;
         background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
          // rgb(252, 213, 105);
     }
@@ -1125,29 +1127,21 @@ export default {
     // Button as subgrid
     .buttons {
         display: grid;
-        grid-template-columns:0px repeat(5, 1fr) 80px; 
+        grid-template-columns:0px repeat(5, 1fr) 80px 0px; 
         grid-template-rows: 33% 33% 33%;
         grid-template-areas: 
-        "blank1 minus fn fn fn fn clear"
-        "blank1 matMultiply fn fn fn fn answer"
-        "blank1 plus fn fn fn fn double";
+        "blank1 minus fn fn fn fn clear blank2"
+        "blank1 matMultiply fn fn fn fn answer blank2"
+        "blank1 plus fn fn fn fn double blank2";
         grid-area: buttons;
         background-image: -webkit-linear-gradient(120deg, indigo, rgb(0, 128, 255));
         //-webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 188, 255)); 
         vertical-align: bottom;
-        margin-left:-4px;
-        margin-right:-4px;
+        // margin-left:-4px;
+        // margin-right:-4px;
         height: 20vh;
     }
 
-    .bottomSpace {
-        grid-area: bottomSpace;
-        margin-bottom: -20%;
-        margin-left:-4px;
-        margin-right:-4px;
-        //background-color: blue;
-        background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
-    }
 
     .clear {
         grid-area: clear;
@@ -1210,7 +1204,14 @@ export default {
         color: white;
     }
 
-    div.blank1 {
+     .bottomSpace {
+            grid-area: bottomSpace;
+            margin-bottom: 0;
+            background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
+        }
+
+    .blank1 {
+        grid-area: blank1;
         background-color: inherit;
         background-image: -webkit-linear-gradient(120deg, rgb(0, 200, 255), rgb(0, 190, 255), rgb(0, 176, 255));
         background-image: -moz-linear-gradient(120deg, rgb(0, 200, 255), rgb(0, 190, 255), rgb(0, 176, 255)); 
@@ -1219,7 +1220,8 @@ export default {
         background-image: linear-gradient(120deg, rgb(0, 200, 255), rgb(0, 190, 255), rgb(0, 176, 255));  
     }
 
-    div.blank2 {
+    .blank2 {
+        grid-area: blank2;
         background-color: inherit;
         background-image: -webkit-linear-gradient(120deg,  rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255), rgb(0, 168, 255)); 
         background-image: -moz-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255), rgb(0, 168, 255)); 
@@ -1328,392 +1330,112 @@ export default {
         background-image: linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
     }
 
-    // iPhone 5/5E
-     @media screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
+    // STANDARD: Very small mobile devices e.g iPhone 5/5E
+     @media screen and (min-width: 320px) //and (max-width: 410px)
     {
         .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 115px 15px 80px 20px 125px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-          
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .answerPanel {
-            margin-top: -25%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-    // Pixel 2
-    @media screen and (min-device-width: 411px) and (max-device-height: 731px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2.6)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 200px 15px 80px 20px 140px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons {
-            margin-left: -6%;
-            margin-right: -10%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-    // Pixel 2 XL
-     @media screen and (min-device-width: 411px) and (max-device-height: 823px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3.5)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 265px 15px 80px 20px 140px auto 15px;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons"
-            "bottomSpace bottomSpace bottomSpace";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-    }
-
-    // iPhone 5/5E (Landscape)
-     @media screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 60px 15px 60px 20px 50px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-    }
-          
-        
-
-    // iPhone 6/7/8
-     @media screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 170px 15px 80px 20px 165px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-    // iPhone 6/7/8 (Landscape)
-    @media screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
-    {
-        .grid {
-            grid-template-rows: 170px 15px 80px 20px 165px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-
-    // iPhone 6/7/8 plus
-    @media screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 200px 15px 80px 20px 140px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons {
-            margin-left: -6%;
-            margin-right: -10%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-    // iPhone X
-     @media screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 240px 15px 80px 20px 140px auto 15px;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons"
-            "bottomSpace bottomSpace bottomSpace";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-    }
-
-    // iPhone X (Landscape)
-     @media screen and (min-device-width: 812px) and (max-device-height: 375px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)
-    {
-        .grid {
-            grid-template-rows: 80px 10px 40px 15px 60px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .matrix > #twoBy2 {
-            width: 180px;
+            grid-template-rows: 30vh 2vh 15vh 3vh 19vh 20vh 3vh; //203px 16.24px 162.4px 40.6px 186.76px 162.4px 40.6px;
         }
 
         .alert {
-            width: 90%;
+            padding: 0 5px;
         }
-    }
 
-    // Samsung Galaxy S5
-     @media screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 145px 15px 80px 20px 160px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
+        .alert-heading{
+            text-align: left;
+            font-size: 22px;
+        }
+
+        .alert-content {
+            font-size: 12px;
         }
 
         .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
+            width: 100vw;
+            margin-left: 0;
+            margin-right: 0;
+            overflow-x: hidden;
+        }
+    }
+    
+    // STANDARD: Medium mobile devices e.g Pixel 2 XL
+     @media screen and (min-width: 411px) //and (max-width: 767px)
+    {
+        .grid {
+            width: 100%;
+            overflow-x: hidden;
+            //overflow-y: auto;
+            grid-template-rows: 30vh 2vh 15vh 3vh 20vh 20vh 4vh; //203px 16.24px 162.4px 40.6px 186.76px 162.4px 40.6px;
         }
 
         .alert {
-            width: 90%;
+            width: 55vw;
         }
 
-        .buttons {
-            margin-bottom: -5%;
+        .alert-heading{
+            text-align: left;
+            font-size: 22px;
         }
-    }
 
-    // Samsung Galaxy S5 (Landscape)
-     @media screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 70px 15px 60px 20px 110px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
+        .alert-content {
+            font-size: 12px;
         }
 
         .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
+            width: 100vw;
+            margin-left: 0;
+            margin-right: 0;
+            overflow-x: hidden;
         }
-        
-        .buttons {
-            margin-bottom: -5%;
+
+         .buttons {
+            grid-template-columns:1fr repeat(5, 1fr) 120px 1fr;
         }
     }
 
-
-    // iPad
-     @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)
+        // STANDARD: Medium devices e.g iPad, Tablets
+     @media screen and (min-width: 768px) 
     {
         .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 280px 20px 100px 30px 230px auto 125px;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons"
-            "bottomSpace bottomSpace bottomSpace";
+            grid-template-rows: 30vh 2vh 15vh 3vh 20vh 20vh 4vh;      //40vh 4vh 30vh 5vh 30vh 30vh 10vh;   //280px 18px 80px 25px 150px 90px 25px;
         }
 
-        .matrix > #twoBy2 {
-            width: 210px;
+        .alert {
+            width: 40vw;
+        }
+
+        .alert-heading{
+            text-align: left;
+        }
+
+        .alert-content {
+            font-size: 12px;
         }
 
         .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
+            width: 100vw;
+            margin-left: 0;
+            margin-right: 0;
+            overflow-x: hidden;
         }
 
-        .bottomSpace {
-            margin-bottom: -5%;
-        }
-    }
-
-    // iPad (Landscape)
-     @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 200px 20px 100px 30px 190px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons"
-           // "bottomSpace bottomSpace bottomSpace";
-        }
-
-        .matrix > #twoBy2 {
-            width: 245px;
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-
-    // Styling for large screens
-     @media screen and (min-width: 736px)
-    {
         input {
             width: 70%;
             font-size: 12px;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 175px 18px 70px 24px 120px 70px;
-            max-height: 100vh;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "rank determinant eigenValues"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-            box-sizing: border-box;
-        }
-
-       
-
-            
-        #twoBy2 {
+         #twoBy2 {
             width: 26%;
-            float: center;
             margin-left: 37%;
             margin-right: 37%;
-            border-radius: 5px;
             margin-top: 0 !important;
-            background-image: -webkit-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -moz-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -o-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: -ms-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
         }
 
         #twoBy2B {
             width: 30%;
-            float: center;
             margin-left: 35%;
             margin-right: 35%;
-            border-radius: 5px;
-            margin-top: 15px !important;
             margin-bottom:5px;
-            padding-top:12px;
             background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
             background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
             background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
@@ -1721,56 +1443,66 @@ export default {
             background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
         }
 
-        #first_By2, #sec_By2 {
-            background-image: -webkit-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -moz-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -o-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: -ms-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-        }
-
-
         .buttons {
-            display: grid;
             grid-template-columns:2fr repeat(5, 1fr) 150px 2fr;
-            grid-template-areas: 
-            "blank1 minus fn fn fn fn clear blank2"
-            "blank1 matMultiply fn fn fn fn answer blank2"
-            "blank1 plus fn fn fn fn double blank2";
         }
-
-        .blank1 {
-            grid-area: blank1;
-            background-color: lightblue;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));
-            background-image: -moz-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: -o-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: -ms-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));  
-        }
-
-        .blank2 {
-            grid-area: blank2;
-            background-color: lightblue;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-            background-image: -moz-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-            background-image: -o-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-            background-image: -ms-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-            background-image: linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-        }
-
-        .swap {
-        grid-column: 5 / 7;
-        }
-
-        .identity {
-            grid-column: 3 / 5;
-            background-color: inherit;
-            color: white;
-        }
-
     }
 
+    // STANDARD: Styling for large screens
+     @media screen and (min-width: 992px)
+    {
+        .grid {
+            grid-template-rows: 30vh 2vh 15vh 3vh 20vh 20vh;  //230px 18px 70px 24px 120px 70px;
+        }
 
+        .alert {
+            width: 30vw;
+        }
+
+        .buttons {
+            grid-template-columns:2fr repeat(5, 1fr) 150px 2fr;
+        }
+    }
+
+    
+/*
+    // iPhone 5/5E (Landscape)
+     @media screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
+   
+    
+    // iPhone 6/7/8
+     @media screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
+    
+    // iPhone 6/7/8 (Landscape)
+    @media screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
+    
+    // iPhone 6/7/8 plus
+    @media screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
+
+    // iPhone X (Landscape)
+     @media screen and (min-device-width: 812px) and (max-device-height: 375px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)
+
+    */
+
+    // Samsung Galaxy S5
+    // @media screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)
+    
+
+    // // Samsung Galaxy S5 (Landscape)
+    //  @media screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)
+    
+/*
+    // iPad (Landscape)
+     @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)
+   
+*/
+
+    //Styling for Landscape orientation for Pixel 2 XL, iPhone 6/7/8 plus and iPhone X
+
+    //Styling for (i.e min-width 736) large screens
+
+   /*  @media screen and (min-width: 736px)
+
+    */
 
 </style>

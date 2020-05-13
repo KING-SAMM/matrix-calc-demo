@@ -1,7 +1,7 @@
 <template>
 
     <v-content>
-      <NSNav /> 
+      <Sidebar /> 
       <NumberSystems />
     </v-content>
 
@@ -10,13 +10,13 @@
 <script>
 // @ is an alias to /src
 import NumberSystems from '@/components/NumberSystems.vue'
-import NSNav from '@/components/NSNav.vue'
+import Sidebar from '@/components/Sidebar.vue'
 
 export default {
   name: 'numbersystems',
   components: {
     NumberSystems,
-    NSNav
+    Sidebar
   }
 }
 </script>
