@@ -1205,10 +1205,10 @@ export default {
     }
 
      .bottomSpace {
-            grid-area: bottomSpace;
-            margin-bottom: 0;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
-        }
+        grid-area: bottomSpace;
+        margin-bottom: 0;
+        background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
+    }
 
     .blank1 {
         grid-area: blank1;
@@ -1393,7 +1393,7 @@ export default {
         }
     }
 
-        // STANDARD: Medium devices e.g iPad, Tablets
+    // STANDARD: Medium devices e.g iPad, Tablets
      @media screen and (min-width: 768px) 
     {
         .grid {

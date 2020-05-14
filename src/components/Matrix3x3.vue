@@ -1398,6 +1398,8 @@ export default {
     // Main grid
     .grid {
         display: grid;
+        max-height: 100vh;
+        max-width: 100vw;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows:310px 15px auto 20px auto auto;  
         grid-template-areas: 
@@ -1406,51 +1408,52 @@ export default {
         "rank determinant eigenValues"
         "scalar scalar scalar"
         "matrix matrix matrix"
-        "buttons buttons buttons";
+        "buttons buttons buttons"
+        "bottomSpace bottomSpace bottomSpace";
         box-sizing: border-box;
     }
 
     .answerPanel {
         display:flex;
         grid-area: answerPanel;
+        flex-flow: column nowrap;
         align-items:center;
+        align-content: center;
         justify-content: center;
-        margin-top: -75px;
-        margin-left:-4px;
-        margin-right:-4px;
+        margin-top: 0;
         grid-row-start: 1;
         grid-row-end: 1;
         background-image: -webkit-linear-gradient(120deg, rgb(0, 204, 255), lightblue, rgb(77, 255, 210));
-        padding: 10px 15px 25px 15px;
+        padding: 10px 0 25px 0;
 
         
         display: grid;
         grid-template-columns:1fr;
-        grid-template-rows: 30px 200px;
+        grid-template-rows: 20px 160px;
         grid-template-areas:
         "mode"
         "answerTable";
     }
 
     .mode {
-        margin-top: 30px;
+        margin-top: 40px;
         grid-area: mode;
         margin-bottom: 0;
-        align-items: center;
+        //align-items: center;
         color: #999;
         font-size: 18px; 
     }
 
     .answerTable {
         grid-area: answerTable;
-        margin-top: 5px;
-        margin-bottom: 30px;
-        align-items: center;
-        justify-content: center;
+        margin-top: 0;
+        margin-bottom: 40px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
      .alert {
-        width: 66.6%;
+        width: 80vw;
         margin-left: auto;
         margin-right: auto;
     }
@@ -1458,8 +1461,6 @@ export default {
     
 
     .method {
-        margin-left:-4px;
-        margin-right:-4px;
         grid-area: method;
         font-size: 12px;
         color: white;
@@ -1468,22 +1469,20 @@ export default {
 
     .determinant {
         grid-area: determinant;
-        height: 80px;
+        height: 12.5vh;
     }
 
     .eigenValues {
         grid-area: eigenValues;
-        height: 80px;
+        height: 12.5vh;
     }
 
     .rank {
         grid-area: rank;
-        height: 80px;
+        height: 12.5vh;
     }
 
     .scalar {
-        margin-left:-4px;
-        margin-right:-4px;
         grid-area: scalar;
         font-size: 10px;
         background-color: indigo;
@@ -1491,28 +1490,31 @@ export default {
     }
 
     .matrix {
-        margin-left:-4px;
-        margin-right:-4px;
         grid-area: matrix;
         background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
-         // rgb(252, 213, 105);
+
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+        "blankPre doubleMatrix singleMatrix blank2";
+        vertical-align: center;
+        padding: 2vh 0;
     }
 
     .buttons {
         display: grid;
-        margin-left:-4px;
-        margin-right:-4px;
-        grid-template-columns:0px repeat(5, 1fr) 80px; 
+        grid-template-columns:0px repeat(5, 1fr) 80px 0px; 
         grid-template-rows: 33% 33% 33%;
         grid-template-areas: 
-        "blank1 minus fn fn fn fn clear"
-        "blank1 matMultiply fn fn fn fn answer"
-        "blank1 plus fn fn fn fn double";
+        "blank1 minus fn fn fn fn clear blank2"
+        "blank1 matMultiply fn fn fn fn answer blank2"
+        "blank1 plus fn fn fn fn double blank2";
         grid-area: buttons;
         background-image: -webkit-linear-gradient(120deg, indigo, rgb(0, 128, 255));
         //-webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 188, 255)); 
         vertical-align: bottom;
-        height: 20vh;
+        //height: 20vh;
     }
 
     .clear {
@@ -1571,36 +1573,42 @@ export default {
         color: white;
     }
 
-    div.blank1 {
-        background-color: inherit;
-        background-image: -webkit-linear-gradient(120deg, rgb(0, 200, 255), rgb(0, 190, 255), rgb(0, 176, 255));
-        background-image: -moz-linear-gradient(120deg, rgb(0, 200, 255), rgb(0, 190, 255), rgb(0, 176, 255)); 
-        background-image: -o-linear-gradient(120deg, rgb(0, 200, 255), rgb(0, 190, 255), rgb(0, 176, 255)); 
-        background-image: -ms-linear-gradient(120deg, rgb(0, 200, 255), rgb(0, 190, 255), rgb(0, 176, 255)); 
-        background-image: linear-gradient(120deg, rgb(0, 200, 255), rgb(0, 190, 255), rgb(0, 176, 255));  
+    .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+        overflow-x: hidden;
     }
 
-    div.blank2 {
-        background-color: inherit;
-        background-image: -webkit-linear-gradient(120deg, rgb(0, 168, 255), rgb(0, 128, 255), rgb(0, 132, 255), rgb(0, 138, 255)); 
-        background-image: -moz-linear-gradient(120deg, rgb(0, 168, 255), rgb(0, 128, 255), rgb(0, 132, 255), rgb(0, 138, 255)); 
-        background-image: -o-linear-gradient(120deg, rgb(0, 168, 255), rgb(0, 128, 255), rgb(0, 132, 255), rgb(0, 138, 255)); 
-        background-image: -ms-linear-gradient(120deg, rgb(0, 168, 255), rgb(0, 128, 255), rgb(0, 132, 255), rgb(0, 138, 255)); 
-        background-image: linear-gradient(120deg, rgb(0, 168, 255), rgb(0, 128, 255), rgb(0, 132, 255), rgb(0, 138, 255)); 
+    .bottomSpace {
+        grid-area: bottomSpace;
+        margin-bottom: 0;
+        background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
+    }
+
+    .blank1 {
+        grid-area: blank1;
+        background-color: lightblue;
+        background-image: -webkit-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));
+        background-image: -moz-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
+        background-image: -o-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
+        background-image: -ms-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
+        background-image: linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));  
+    }
+
+    .blank2 {
+        grid-area: blank2;
+        background-color: lightblue;
+        background-image: -webkit-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
+        background-image: -moz-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
+        background-image: -o-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
+        background-image: -ms-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
+        background-image: linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
     }
 
     .value{
         font-size: 12px;
         font-weight: 100;
-    }
-
-    .doubleMatrix {
-        //width: 80%;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: space-evenly;
-        align-items: baseline;
-        align-content: space-around;
     }
 
     input {
@@ -1648,9 +1656,9 @@ export default {
     .doubleMatrix {
         display: flex;
         flex-flow: column nowrap;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
-        align-content: space-around;
+        align-content: center;
     }
 
     .doubleMatrixName {
@@ -1679,141 +1687,216 @@ export default {
     }
 
     #threeBy3Ans {
-        width: 180px;
+        width: 200px;
         height: 80px;
         font-size: 12px;
         opacity: 1;
         float: center;
-        margin-left: 35%;
-        margin-right: 35%;
-        margin-bottom:-10%;
+        margin-left: 20%;
+        margin-right: 20%;
+        //margin-bottom:-10%;
         margin-top: 14% !important;
         padding-top:12px;
-        justify-content:center;
+        //justify-content:center;
         border-radius: 5px;
-        background-image: -webkit-linear-gradient(120deg, indigo, rgb(67, 152, 230), indigo);
-        background-image: -moz-linear-gradient(120deg, indigo, rgb(67, 152, 230), indigo);
-        background-image: -o-linear-gradient(120deg,indigo,  rgb(67, 152, 230),indigo);
-        background-image: -ms-linear-gradient(120deg,indigo,  rgb(67, 152, 230),indigo);
-        background-image: linear-gradient(120deg,indigo,  rgb(67, 152, 230),indigo);
+        background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        background-image: -ms-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+    }
+
+     // STANDARD: Very small mobile devices e.g iPhone 5/5E
+     @media screen and (min-width: 320px) //and (max-width: 410px)
+     {
+        .grid {
+            grid-template-rows: 30vh 2vh auto 3vh auto 18vh 2.5vh;//210px 16px auto 22px auto auto;
+        }
+
+          .alert {
+            padding: 0 5px;
+        }
+
+        .alert-heading{
+            text-align: left;
+            font-size: 22px;
+        }
+
+        .alert-content {
+            font-size: 12px;
+        }
+
+     }
+
+     // STANDARD: Very small mobile devices e.g Samsung Galaxy S5
+     @media screen and (min-width: 360px) 
+    {
+        .grid {
+            grid-template-rows: 31.5vh 2vh auto 3vh auto 19vh 3vh;//210px 16px auto 22px auto auto;
+        }
+
+        .matrix {
+            padding: 3vh 0;
+        }
+
+        .determinant, .eigenValues, .rank {
+            height: 11.5vh;
+        }
+    }
+
+    // STANDARD: Small mobile devices e.g iPhone 6/7/8
+     @media screen and (min-width: 375px) 
+    {
+        .grid {
+            grid-template-rows: 31.5vh 2vh auto 3vh auto 20vh 3vh;//210px 16px auto 22px auto auto;
+        }
+
+        .determinant, .eigenValues, .rank {
+            height: 10.5vh;
+        }
+    }
+
+    // STANDARD: Medium mobile devices e.g Picel 2
+     @media screen and (min-width: 411px) 
+    {
+        .grid {
+            grid-template-rows: 31.5vh 2vh auto 3vh auto 21vh 3vh;//210px 16px auto 22px auto auto;
+        }
+
+         .matrix {
+            padding: 3.5vh 0;
+        }
+
+         .alert {
+            width: 75vw;
+        }
+
+        .alert-heading{
+            text-align: left;
+            font-size: 22px;
+        }
+
+        .alert-content {
+            font-size: 12px;
+        }
+
+         .determinant, .eigenValues, .rank {
+            height: 10vh;
+        }
+
+        .buttons {
+            grid-template-columns:1fr repeat(5, 1fr) 120px 1fr;
+        }
+    }
+
+    // STANDARD: Medium mobile devices e.g Picel 2 XL
+     @media screen and (min-width: 411px) and (max-height: 823px)
+    {
+        .grid {
+            grid-template-rows: 32.5vh 2vh auto 3vh auto 22vh 4.5vh;//210px 16px auto 22px auto auto;
+        }
+        
+         .determinant, .eigenValues, .rank {
+            height: 8.5vh;
+        }
+
+        .alert {
+            width: 70vw;
+        }
+
+          .matrix {
+            padding: 4vh 0;
+        }
+    }
+
+    // STANDARD: Medium devices e.g iPad, Tablets
+     @media screen and (min-width: 768px) 
+    {
+        .grid {
+            grid-template-rows: 33vh 2vh auto 3vh auto 23vh 4.5vh;//210px 16px auto 22px auto auto;
+        }
+
+         .alert {
+            width: 45vw;
+        }
+
+         .determinant, .eigenValues, .rank {
+            height: 6vh;
+        }
+
+        #threeBy3, #threeBy3Ans {
+            width: 230px;
+            height: 90px;
+        }
+
+        // #threeBy3 {
+        //     height: 90px;
+        // }
+
+        #threeBy3Ans {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #first_By3, #sec_By3 {
+            width: 230px;
+        }
+
+        input#scalar {
+            width: 65px;
+        }
+
+        input {
+            width: 70px;
+        }
+
+        .matrix {
+            padding: 5vh 0;
+        }
+
+         #first_By3 {
+            margin-left: 30vw;
+            margin-right: 5vw;
+        }
+
+        #sec_By3 {
+            margin-left: 5vw;
+            margin-right: 30vw;
+        }
+
+        .doubleMatrix {
+            margin-top: 2vh;
+            margin-bottom: 2vh;
+        }
+
+        // #first_By3, #sec_By3 {
+        //     margin-top: 50px;
+        //     margin-bottom: 50px;
+        // }
+
+        .doubleMatrix, .singleMatrix {
+            width: 100vw;
+            flex-flow: row nowrap;
+            justify-content: space-evenly;
+            align-items: baseline;
+        }
     }
 
     //Media Query for large Screens: Tablet Landscape, Laptop displays, Desktop displays
     @media screen and (min-width: 992px)
     {
-        input {
-            width: 80%;
-            font-size: 12px;
-        }
-
-        .grid {
-            grid-template-rows: 230px 18px 70px 24px 120px 70px;
-            max-height: 100vh;
-            box-sizing: border-box;
-        }
-
-        #threeBy3 {
-            width: 40%;
-            float: center;
-            margin-left: 30%;
-            margin-right: 30%;
-            border-radius: 5px;
-            margin-top: 16px !important;
-            background-image: -webkit-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -moz-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -o-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: -ms-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-        }
-
-        #threeBy3Ans {
-            width: 30%;
-            height: 120px;
-            opacity: 1;
-            float: center;
-            margin-left: 35%;
-            margin-right: 35%;
-            margin-top: 15px !important;
-            margin-bottom:5px;
-            padding-top:12px;
-            border-radius: 5px;
-            background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-            background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-            background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-            background-image: -ms-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-            background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-        }
-
-        .matrix {
-            display: grid;
-            grid-template-columns:1fr 1fr 1fr;
-            grid-template-rows: auto auto auto;
-            grid-template-areas: 
-            "blankPre doubleMatrix singleMatrix blank2";
-            vertical-align: center;
+        .alert {
+            width: 30vw;
         }
 
         .buttons {
-            display: grid;
             grid-template-columns:2fr repeat(5, 1fr) 150px 2fr;
-            grid-template-areas: 
-            "blank1 minus fn fn fn fn clear blank2"
-            "blank1 matMultiply fn fn fn fn answer blank2"
-            "blank1 plus fn fn fn fn double blank2";
         }
-
-        .blank1 {
-            grid-area: blank1;
-            background-color: lightblue;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));
-            background-image: -moz-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: -o-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: -ms-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));  
-        }
-
-        .blank2 {
-            grid-area: blank2;
-            background-color: lightblue;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
-            background-image: -moz-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
-            background-image: -o-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
-            background-image: -ms-linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
-            background-image: linear-gradient(120deg, rgb(0, 138, 255), rgb(0, 132, 255), rgb(0, 128, 255)); 
-        }
-
-
-        .identity {
-            grid-column: 3 / 5;
-            background-color: inherit;
-            color: white;
-        }
-
-        .doubleMatrix, .singleMatrix {
-            display: flex;
-            width: 100%;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            align-items: baseline;
-        }
+        
 
         .opr {
             flex-basis: 50px;
         }
-
-        #threeBy3 {
-            width: 700px;
-        }
-
-        #first_By3, #sec_By3 {
-            width: 300px;
-            background-image: -webkit-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -moz-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -o-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: -ms-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-        }
-
     }
 
 </style>
