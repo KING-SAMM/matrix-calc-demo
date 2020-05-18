@@ -1074,8 +1074,8 @@ export default {
 
     .answerTable {
         grid-area: answerTable;
-        margin-top: 5px;
-        margin-bottom: 30px;
+        margin-top: 0;
+        margin-bottom: 35px;
         align-items: center;
         justify-content: center;
     }
@@ -1334,7 +1334,7 @@ export default {
      @media screen and (min-width: 320px) //and (max-width: 410px)
     {
         .grid {
-            grid-template-rows: 30vh 2vh 15vh 3vh 19vh 20vh 3vh; //203px 16.24px 162.4px 40.6px 186.76px 162.4px 40.6px;
+            grid-template-rows: 30vh 3vh 15vh 3vh 19vh 20vh 2vh; //203px 16.24px 162.4px 40.6px 186.76px 162.4px 40.6px;
         }
 
         .alert {

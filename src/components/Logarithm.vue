@@ -5,7 +5,7 @@
             <span class="mode">{{ mode }}</span>
 
             <!-- Logarithm Answer -->
-            <table id="twoBy2B" class="table w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showLogarithm">
+            <table id="twoBy2B" class="answerTable w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showLogarithm">
                 <tbody>
                     <tr>
                         <td><p><span class="log">log</span><sub class="base">{{ base }}</sub><span class="num"> {{ num }}</span><span  class="logEqual"> {{ logEqual }} </span> <span class="logAns">{{ logAns }}</span></p></td>
@@ -14,7 +14,7 @@
             </table>
 
             <!-- Antilogarithm Answer -->
-             <table id="twoBy2B" class="table w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showAntiLogarithm">
+             <table id="twoBy2B" class="answerTable w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showAntiLogarithm">
                 <tbody>
                     <tr>
                         <td><p><span class="log">log</span><sup>-1</sup><sub class="base">{{ base }}</sub><span class="num"> {{ logAns }}</span><span  class="logEqual"> {{ logEqual }} </span> <span class="logAns">{{ num }}</span></p></td>
@@ -23,7 +23,7 @@
             </table>
 
             <!-- Natural Logarithm Answer -->
-            <table id="twoBy2B" class="table w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showNaturalLogarithm">
+            <table id="twoBy2B" class="answerTable w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showNaturalLogarithm">
                 <tbody>
                     <tr>
                         <td><p><span class="log">log</span><sub class="base">{{ natLogBase }}</sub><span class="num"> {{ natLogNum }}</span><span  class="logEqual"> {{ logEqual }} </span> <span class="logAns">{{ natLogAns }}</span></p></td>
@@ -32,7 +32,7 @@
             </table>
 
              <!-- Inverse Natural Logarithm Answer -->
-            <table id="twoBy2B" class="table w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showInverseNaturalLogarithm">
+            <table id="twoBy2B" class="answerTable w3-animate-opacity w3-card-4 w3-black w3-centered tr td" v-show="showInverseNaturalLogarithm">
                 <tbody>
                     <tr>
                         <td><p><span class="log">log</span><sup>-1</sup><sub class="base">{{ natLogBase }}</sub><span class="num"> {{ natLogAns }}</span><span  class="logEqual"> {{ logEqual }} </span> <span class="logAns">{{ natLogNum }}</span></p></td>
@@ -336,29 +336,30 @@ export default {
     // Main grid
     .grid {
         display: grid;
+        max-height: 100vh;
+        max-width: 100vw;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 110px 15px 20px 160px auto 45px;
+        grid-template-rows: 110px 15px 160px auto 45px;
         grid-template-areas: 
         "answerPanel answerPanel answerPanel"
         "method method method"
-        "scalar scalar scalar"
+        //"scalar scalar scalar"
         "matrix matrix matrix"
         "blank1 buttons blank2"
         "bottomSpace bottomSpace bottomSpace";
+        box-sizing: border-box;
     
     }
 
     .answerPanel {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 90px auto;
+        grid-template-rows: 20px auto;
         grid-template-areas: 
         "mode"
-        "table";
+        "answerTable";
         grid-area: answerPanel;
         margin-top: 0%;
-        margin-left:-4px;
-        margin-right:-4px;
         align-items:center;
         justify-content: center;
         // grid-row-start: 1;
@@ -366,24 +367,30 @@ export default {
         background-image: -webkit-linear-gradient(120deg, rgb(0, 204, 255), lightblue, rgb(77, 255, 210));
         
         /* background-color: #ccc; */
-        padding: 15px;
+        padding: 7px 0 25px 0;
     }
 
     
-    .table {
-        grid-area: table;
-        margin-top: 10px;
+    .answerTable {
+        grid-area: answerTable;
+        margin-top: 8;
+        margin-bottom: 30px;
+        align-items: center;
+        justify-content: center;
+        // margin-left: auto;
+        // margin-right: auto;
     }
     .mode {
         grid-area: mode;
-        margin-bottom: 10px;
+        margin-top: 7px;
+        margin-bottom: 0;
         align-items: center;
+        color: #999;
+        font-size: 18px;
     }
 
     .method {
         grid-area: method;
-        margin-left:-4px;
-        margin-right:-4px;
         font-size: 12px;
         color: white;
         background-color: indigo;
@@ -391,37 +398,57 @@ export default {
 
     .matrix {
         grid-area: matrix;
-        margin-left:-4px;
-        margin-right:-4px;
         background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
-        
-        /*background-color: #ccc; */
-         // rgb(252, 213, 105);
+        padding: auto auto;
     }
     
 
     // Button as subgrid
     .buttons {
         display: grid;
-        grid-template-columns:2fr repeat(3, 1fr) 2fr; 
+        grid-template-columns:0px repeat(3, 1fr) 0px; 
         grid-template-rows: auto auto;
         grid-template-areas: 
-        "logmode logmode antilogmode antilogmode clear"
-        "natlogmode natlogmode natantilogmode natantilogmode clear";
+        "blank1 logmode antilogmode clear blank2"
+        "blank1 natlogmode natantilogmode clear blank2";
         grid-area: buttons;
         background-image: -webkit-linear-gradient(120deg, indigo, rgb(0, 128, 255)); 
         vertical-align: bottom;
-        margin-left:-4px;
-        margin-right:-4px;
+    }
+
+    button {
+        display: flex;
+        flex-flow: wrap;
+        font-size: 11px;
+        align-items: center;
+        justify-content: center;
     }
 
     .bottomSpace {
         grid-area: bottomSpace;
-        margin-bottom: -20%;
-        margin-left:-4px;
-        margin-right:-4px;
-        //background-color: blue;
+        margin-bottom: 0;
         background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 148, 255), rgb(0, 188, 255),rgb(0, 204, 255));
+    }
+
+    .logmode {
+        grid-area: logmode;
+    }
+
+    .antilogmode {
+        grid-area: antilogmode;
+    }
+
+    .natlogmode {
+        grid-area: natlogmode;
+    }
+
+    .natantilogmode {
+        grid-area: natantilogmode;
+    }
+
+     .logmode, .antilogmode, .natlogmode, .natantilogmode {
+        background-color: inherit;
+        color: white;
     }
 
     .clear {
@@ -438,12 +465,12 @@ export default {
         font-size: 20px;
     }
 
-    .mode {
-        font-size: 16px;
-        font-weight: 600;
-        color: #999;
-        margin-top: 5px;
-    }
+    // .mode {
+    //     font-size: 16px;
+    //     font-weight: 600;
+    //     color: #999;
+    //     margin-top: 5px;
+    // }
 
     .answer {
         grid-area: answer;
@@ -459,12 +486,6 @@ export default {
 
     #method {
         color: white;
-    }
-
-    .logmode, .antilogmode, .natlogmode, .natantilogmode {
-        background-color: inherit;
-        color: white;
-        font-size: 14px;
     }
 
     .modeBtn {
@@ -544,6 +565,8 @@ export default {
         margin-top: 0 !important;
         margin-bottom: 10px;
         border-radius: 5px;
+        overflow: hidden;
+        padding: 5px 10px;
         background-image: -webkit-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
         background-image: -moz-linear-gradient(120deg, indigo, rgb(34, 116, 192), indigo);
         background-image: -o-linear-gradient(120deg,indigo,  rgb(34, 116, 192),indigo);
@@ -551,492 +574,192 @@ export default {
         background-image: linear-gradient(120deg,indigo,  rgb(34, 116, 192),indigo);
     }
 
-    // iPhone 5/5E
-     @media screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
+     // STANDARD: Very small mobile devices e.g iPhone 5/5E
+     @media screen and (min-width: 320px) 
     {
         .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 115px 15px 20px 125px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-          
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .answerPanel {
-            margin-top: -25%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-    // Pixel 2
-    @media screen and (min-device-width: 411px) and (max-device-height: 731px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2.6)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 200px 15px 20px 140px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons {
-            margin-left: -6%;
-            margin-right: -10%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-    // Pixel 2 XL
-     @media screen and (min-device-width: 411px) and (max-device-height: 823px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3.5)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 265px 15px 20px 140px auto 15px;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons"
-            "bottomSpace bottomSpace bottomSpace";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .buttons {
-             div.blank1, div.blank2 {
-                display: none;
-            }
-            display: grid;
-            grid-template-columns:repeat(3, 1fr); 
-            grid-template-rows: auto;
-            grid-template-areas: 
-            "logmode antilogmode clear"
-            "natlogmode natantilogmode clear";
-            grid-area: buttons;
-        }
-    }
-
-    // iPhone 5/5E (Landscape)
-     @media screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 60px 15px 20px 50px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-    }
-          
-        
-
-    // iPhone 6/7/8
-     @media screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 170px 15px 20px 165px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .buttons {
-             div.blank1, div.blank2 {
-                display: none;
-            }
-            display: grid;
-            grid-template-columns:repeat(3, 1fr); 
-            grid-template-rows: auto;
-            grid-template-areas: 
-            "logmode antilogmode clear"
-            "natlogmode natantilogmode clear";
-            grid-area: buttons;
-            margin-bottom: -5%;
-        }
-    }
-
-    // iPhone 6/7/8 (Landscape)
-    @media screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
-    {
-        .grid {
-            grid-template-rows: 170px 15px 20px 165px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-
-    // iPhone 6/7/8 plus
-    @media screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 200px 15px 20px 140px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons {
-            margin-left: -6%;
-            margin-right: -10%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-    // iPhone X
-     @media screen and (min-device-width: 375px) and (max-device-height: 812px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 240px 15px 20px 140px auto 15px;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons"
-            "bottomSpace bottomSpace bottomSpace";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-               // Button as subgrid
-        .buttons {
-            div.blank1, div.blank2 {
-                display: none;
-            }
-            display: grid;
-            grid-template-columns:repeat(3, 1fr); 
-            grid-template-rows: auto;
-            grid-template-areas: 
-            "logmode antilogmode clear"
-            "natlogmode natantilogmode clear";
-            grid-area: buttons;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 128, 255), rgb(0, 188, 255)); 
-            vertical-align: bottom;
-            // margin-left:-4px;
-            // margin-right:-4px;
-        }
-    }
-
-    // iPhone X (Landscape)
-     @media screen and (min-device-width: 812px) and (max-device-height: 375px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)
-    {
-        .grid {
-            grid-template-rows: 80px 10px 15px 60px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .matrix > #twoBy2 {
-            width: 180px;
-        }
-    }
-
-    // Samsung Galaxy S5
-     @media screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 145px 15px 20px 160px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .buttons {
-             div.blank1, div.blank2 {
-                display: none;
-            }
-            display: grid;
-            grid-template-columns:repeat(3, 1fr); 
-            grid-template-rows: auto;
-            grid-template-areas: 
-            "logmode antilogmode clear"
-            "natlogmode natantilogmode clear";
-            grid-area: buttons;
-            margin-bottom: -5%;
-        }
-    }
-
-    // Samsung Galaxy S5 (Landscape)
-     @media screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 70px 15px 20px 110px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-        
-        .buttons {
-            margin-bottom: -5%;
-        }
-    }
-
-
-    // iPad
-     @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 280px 20px 30px 230px auto 125px;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons"
-            "bottomSpace bottomSpace bottomSpace";
-        }
-
-        .matrix > #twoBy2 {
-            width: 210px;
-        }
-
-        .answerPanel, .scalar, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .bottomSpace {
-            margin-bottom: -5%;
-        }
-    }
-
-    // iPad (Landscape)
-     @media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)
-    {
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 200px 20px 30px 190px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons"
-           // "bottomSpace bottomSpace bottomSpace";
-        }
-
-        .matrix > #twoBy2 {
-            width: 245px;
+            grid-template-rows: 32vh 3vh 24.5vh 22vh 10vh;      
         }
 
         .answerPanel, .method, .matrix, .buttons, .bottomSpace {
-            margin-left: -5%;
-            margin-right: -5%;
-        }
-
-        .buttons {
-            margin-bottom: -5%;
+            width: 100vw;
+            margin-left: 0;
+            margin-right: 0;
+            overflow-x: hidden;
         }
     }
 
-    // // iPad Pro
-
-
-    // Styling for large screens
-     @media screen and (min-width: 736px)
+    // STANDARD: Small mobile devices e.g Galaxy S5
+     @media screen and (min-width: 360px) 
     {
-        input {
-            width: 70%;
-            font-size: 12px;
-        }
-
         .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-template-rows: 250px 20px 30px 190px auto;
-            grid-template-areas: 
-            "answerPanel answerPanel answerPanel"
-            "method method method"
-            "scalar scalar scalar"
-            "matrix matrix matrix"
-            "buttons buttons buttons";
-             background-color: skyblue;
-             
+            grid-template-rows: 33vh 3vh 24.5vh 22vh 10vh;      
+        }
+    }
+
+     // STANDARD: Small mobile devices e.g iPhone 6/7/8
+     @media screen and (min-width: 375px) 
+    {
+        .grid {
+            grid-template-rows: 33vh 3vh 24vh 22vh 11.1vh;      
+        }
+    }
+
+    // STANDARD: Medium mobile devices e.g Pixel 2 XL
+     @media screen and (min-width: 411 px) 
+    {
+        .grid {
+            grid-template-rows: 33vh 3vh 26vh 22vh 12vh;      
         }
 
         .buttons {
-            margin-bottom: -9%;
+            grid-template-columns:1fr repeat(3, 1fr) 1fr; 
+        }
+    }
+
+    // STANDARD: Large mobile devices e.g iPhone 6/7/8 Plus
+     @media screen and (min-width: 414 px) 
+    {
+        .grid {
+            grid-template-rows: 33vh 3vh 28vh 24vh 12vh;      
         }
 
-         .answerPanel {
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 90px auto;
-            grid-template-areas: 
-            "mode"
-            "table";
-            grid-area: answerPanel;
-            margin-top: 0%;
-            margin-left:-4px;
-            margin-right:-4px;
-            align-items:center;
-            justify-content: center;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 204, 255), lightblue, rgb(77, 255, 210));
-            padding: 15px;
+        .buttons {
+            grid-template-columns:1fr repeat(3, 1fr) 1fr; 
         }
+    }
+
+
+
+    // Styling for Tablets e.g iPad, iPad pro
+     @media screen and (min-width: 768px)
+    {
+        .grid {
+            overflow: hidden;
+            grid-template-rows: 33vh 3vh 25vh 22vh 12.5vh;      
+        }
+        // input {
+        //     width: 70%;
+        //     font-size: 12px;
+        // }
+
+        // .grid {
+        //     display: grid;
+        //     grid-template-columns: 1fr 1fr 1fr;
+        //     grid-template-rows: 250px 20px 30px 190px auto;
+        //     grid-template-areas: 
+        //     "answerPanel answerPanel answerPanel"
+        //     "method method method"
+        //     "scalar scalar scalar"
+        //     "matrix matrix matrix"
+        //     "buttons buttons buttons";
+        //      background-color: skyblue;
+             
+        // }
+
+        // .buttons {
+        //     margin-bottom: -9%;
+        // }
+
+        //  .answerPanel {
+        //     display: grid;
+        //     grid-template-columns: 1fr;
+        //     grid-template-rows: 90px auto;
+        //     grid-template-areas: 
+        //     "mode"
+        //     "table";
+        //     grid-area: answerPanel;
+        //     margin-top: 0%;
+        //     margin-left:-4px;
+        //     margin-right:-4px;
+        //     align-items:center;
+        //     justify-content: center;
+        //     background-image: -webkit-linear-gradient(120deg, rgb(0, 204, 255), lightblue, rgb(77, 255, 210));
+        //     padding: 15px;
+        // }
 
         
-        .table {
-            grid-area: table;
-            margin-top: 10px;
-        }
-        .mode {
-            grid-area: mode;
-            margin-bottom: 10px;
-            align-items: center;
-        }
+        // .table {
+        //     grid-area: table;
+        //     margin-top: 10px;
+        // }
+        // .mode {
+        //     grid-area: mode;
+        //     margin-bottom: 10px;
+        //     align-items: center;
+        // }
                 
-        #twoBy2 {
-            width: 26%;
-            float: center;
-            margin-left: 37%;
-            margin-right: 37%;
-            border-radius: 5px;
-            margin-top: 16px !important;
-            background-image: -webkit-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -moz-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
-            background-image: -o-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: -ms-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-            background-image: linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
-        }
+        // #twoBy2 {
+        //     width: 26%;
+        //     float: center;
+        //     margin-left: 37%;
+        //     margin-right: 37%;
+        //     border-radius: 5px;
+        //     margin-top: 16px !important;
+        //     background-image: -webkit-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
+        //     background-image: -moz-linear-gradient(120deg, rgb(67, 152, 230), rgb(153, 153, 230));
+        //     background-image: -o-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
+        //     background-image: -ms-linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
+        //     background-image: linear-gradient(120deg, rgb(67, 152, 230),rgb(153, 153, 230));
+        // }
 
-        #twoBy2B {
-            width: 30%;
-            float: center;
-            margin-left: 35%;
-            margin-right: 35%;
-            border-radius: 5px;
-            margin-bottom: 0px;
-            margin-top: 6px !important;
-            background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-            background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-            background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-            background-image: -ms-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-            background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
-        }
+        // #twoBy2B {
+        //     width: 30%;
+        //     float: center;
+        //     margin-left: 35%;
+        //     margin-right: 35%;
+        //     border-radius: 5px;
+        //     margin-bottom: 0px;
+        //     margin-top: 6px !important;
+        //     background-image: -webkit-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        //     background-image: -moz-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        //     background-image: -o-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        //     background-image: -ms-linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        //     background-image: linear-gradient(120deg, indigo, rgb(38, 140, 235), indigo);
+        // }
 
-        .buttons {
-            display: grid;
-            grid-template-columns:2fr repeat(3, 1fr) 2fr;
-            grid-template-areas: 
-            "blank1 logmode antilogmode clear blank2"
-            "blank1 natlogmode natantilogmode clear blank2";
-        }
+        // .buttons {
+        //     display: grid;
+        //     grid-template-columns:2fr repeat(3, 1fr) 2fr;
+        //     grid-template-areas: 
+        //     "blank1 logmode antilogmode clear blank2"
+        //     "blank1 natlogmode natantilogmode clear blank2";
+        // }
 
-        .blank1 {
-            grid-area: blank1;
-            background-color: lightblue;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));
-            background-image: -moz-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: -o-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: -ms-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
-            background-image: linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));  
-        }
+        // .blank1 {
+        //     grid-area: blank1;
+        //     background-color: lightblue;
+        //     background-image: -webkit-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));
+        //     background-image: -moz-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
+        //     background-image: -o-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
+        //     background-image: -ms-linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255)); 
+        //     background-image: linear-gradient(120deg, rgb(0, 158, 255), rgb(0, 178, 255), rgb(0, 190, 255));  
+        // }
 
-        .blank2 {
-            grid-area: blank2;
-            background-color: lightblue;
-            background-image: -webkit-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-            background-image: -moz-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-            background-image: -o-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-            background-image: -ms-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-            background-image: linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
-        }
+        // .blank2 {
+        //     grid-area: blank2;
+        //     background-color: lightblue;
+        //     background-image: -webkit-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
+        //     background-image: -moz-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
+        //     background-image: -o-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
+        //     background-image: -ms-linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
+        //     background-image: linear-gradient(120deg, rgb(0, 190, 255), rgb(0, 108, 255), rgb(0, 108, 255)); 
+        // }
 
+        // .grid {
+        //     margin-top: -70px;
+        //     margin-right: 35px;
+        //     margin-bottom: 0;
+        // }
+
+    }
+
+      // Styling for large screens
+     @media screen and (min-width: 992px)
+    {
         .grid {
-            margin-top: -70px;
-            margin-right: 35px;
-            margin-bottom: 0;
+            grid-template-rows: 33vh 3vh 25.5vh 22vh 11vh;      
         }
-
     }
 
 </style>
