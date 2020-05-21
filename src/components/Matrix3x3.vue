@@ -88,9 +88,9 @@
             <aside class="singleMatrix" v-show="showSingleInputMatrix">
                 <table id="threeBy3" class="w3-animate-zoom w3-card-4 w3-black w3-centered tr td" v-show="showSingleInputMatrix">
                     <tbody>
-                        <tr><td><input v-model.number="a" size="4" class="entry" placeholder="x11"></td><td><input v-model.number="b" size="4" class="entry" placeholder="x12"></td><td><input v-model.number="c" size="4" class="entry" placeholder="x13"></td></tr>
-                        <tr><td><input v-model.number="d" size="4" class="entry" placeholder="x21"></td><td><input v-model.number="e" size="4" class="entry" placeholder="x22"></td><td><input v-model.number="f" size="4" class="entry" placeholder="x23"></td></tr>
-                        <tr><td><input v-model.number="g" size="4" class="entry" placeholder="x31"></td><td><input v-model.number="h" size="4" class="entry" placeholder="x32"></td><td><input v-model.number="i" size="4" class="entry" placeholder="x33"></td></tr>
+                        <tr><td><input type="number" v-model.number="a" size="4" class="entry" placeholder="x11"></td><td><input type="number" v-model.number="b" size="4" class="entry" placeholder="x12"></td><td><input type="number" v-model.number="c" size="4" class="entry" placeholder="x13"></td></tr>
+                        <tr><td><input type="number" v-model.number="d" size="4" class="entry" placeholder="x21"></td><td><input type="number" v-model.number="e" size="4" class="entry" placeholder="x22"></td><td><input type="number" v-model.number="f" size="4" class="entry" placeholder="x23"></td></tr>
+                        <tr><td><input type="number" v-model.number="g" size="4" class="entry" placeholder="x31"></td><td><input type="number" v-model.number="h" size="4" class="entry" placeholder="x32"></td><td><input type="number" v-model.number="i" size="4" class="entry" placeholder="x33"></td></tr>
                     </tbody>
                 </table>
             </aside>
@@ -1710,7 +1710,7 @@ export default {
      @media screen and (min-width: 320px) //and (max-width: 410px)
      {
         .grid {
-            grid-template-rows: 30vh 2vh auto 3vh auto 18vh 2.5vh;//210px 16px auto 22px auto auto;
+            grid-template-rows: 30vh 2.5vh auto 3vh auto 18vh 2.5vh;//210px 16px auto 22px auto auto;
         }
 
           .alert {
@@ -1732,7 +1732,7 @@ export default {
      @media screen and (min-width: 360px) 
     {
         .grid {
-            grid-template-rows: 31.5vh 2vh auto 3vh auto 19vh 3vh;//210px 16px auto 22px auto auto;
+            grid-template-rows: 31.5vh 2.5vh auto 3vh auto 19vh 3vh;//210px 16px auto 22px auto auto;
         }
 
         .matrix {
@@ -1748,7 +1748,7 @@ export default {
      @media screen and (min-width: 375px) 
     {
         .grid {
-            grid-template-rows: 31.5vh 2vh auto 3vh auto 20vh 3vh;//210px 16px auto 22px auto auto;
+            grid-template-rows: 31.5vh 2.5vh auto 3vh auto 20vh 3vh;//210px 16px auto 22px auto auto;
         }
 
         .determinant, .eigenValues, .rank {
@@ -1760,7 +1760,7 @@ export default {
      @media screen and (min-width: 411px) 
     {
         .grid {
-            grid-template-rows: 31.5vh 2vh auto 3vh auto 21vh 3vh;//210px 16px auto 22px auto auto;
+            grid-template-rows: 31.5vh 2.5vh auto 3vh auto 21vh 3vh;//210px 16px auto 22px auto auto;
         }
 
          .matrix {

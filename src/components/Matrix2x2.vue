@@ -81,10 +81,10 @@
             <table id="twoBy2" class="w3-animate-zoom w3-card-4 w3-black w3-centered tr" v-show="showSingleInputMatrix">
                 <tbody>
                     <tr>
-                        <td><input size="4" v-model.number="a" maxlength="3" placeholder="x11" class="entry" required></td><td><input size="4" v-model.number="b" maxlength="3" placeholder="x12" class="entry" required></td>
+                        <td><input :type="type" size="4" v-model.number="a" maxlength="3" placeholder="x11" class="entry" required></td><td><input :type="type" size="4" v-model.number="b" maxlength="3" placeholder="x12" class="entry" required></td>
                     </tr>
                     <tr>
-                        <td><input size="4" v-model.number="c" maxlength="3" placeholder="x21" class="entry" required></td><td><input size="4" v-model.number="d" maxlength="3" placeholder="x22" class="entry" required></td>
+                        <td><input :type="type" size="4" v-model.number="c" maxlength="3" placeholder="x21" class="entry" required></td><td><input :type="type" size="4" v-model.number="d" maxlength="3" placeholder="x22" class="entry" required></td>
                     </tr>
                 </tbody>
             </table>
