@@ -1393,6 +1393,17 @@ export default {
         }
     }
 
+     // STANDARD: Medium mobile devices e.g Pixel 2 XL
+     @media screen and (min-width: 414px) //and (max-width: 767px)
+    {
+        .grid {
+            // width: 100%;
+            // overflow-x: hidden;
+            // //overflow-y: auto;
+            grid-template-rows: 30vh 2.5vh 15vh 3vh 20vh 20vh 4vh; //203px 16.24px 162.4px 40.6px 186.76px 162.4px 40.6px;
+        }
+    }
+
     // STANDARD: Medium devices e.g iPad, Tablets
      @media screen and (min-width: 768px) 
     {
@@ -1428,7 +1439,8 @@ export default {
             width: 26%;
             margin-left: 37%;
             margin-right: 37%;
-            margin-top: 0 !important;
+            margin-top: 40px !important;
+            //margin-bottom: auto !important;
         }
 
         #twoBy2B {

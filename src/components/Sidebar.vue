@@ -12,6 +12,15 @@
 
       <v-spacer></v-spacer>
         <v-btn icon>
+            <router-link to="/" class="links"><b-icon icon="house-door-fill" style="color:white"></b-icon><br><span class="white--text iconText">Home</span></router-link>
+        </v-btn>
+        <v-btn icon>
+            <router-link to="/matrix2x2" class="links"><b-icon icon="grid-fill" style="color:white"></b-icon><br><span class="white--text iconText">2X2</span></router-link>
+        </v-btn>
+        <v-btn icon>
+            <router-link to="/matrix3x3" class="links"><b-icon icon="grid3x3-gap-fill" style="color:white"></b-icon><br><span class="white--text iconText">3X3</span></router-link>
+        </v-btn>
+        <!-- <v-btn icon>
             <router-link to="/" class="links"><v-icon style="color:white" small>home</v-icon><br><span class="white--text iconText">Home</span></router-link>
         </v-btn>
         <v-btn icon>
@@ -19,7 +28,7 @@
         </v-btn>
         <v-btn icon>
             <router-link to="/matrix3x3" class="links"><v-icon style="color:white" small>apps</v-icon><br><span class="white--text iconText">3X3</span></router-link>
-        </v-btn>
+        </v-btn> -->
     
       <v-spacer></v-spacer>
     </v-toolbar>
@@ -28,7 +37,7 @@
         id="sidebar-variant" 
         title="Functions" 
         bg-variant="light" 
-        text-variant="info"
+        text-variant="primary"
         backdrop
         shadow
 
